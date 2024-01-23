@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- ============== 輪播css ============== -->
+  <link rel="stylesheet" href="https://media.etmall.com.tw/sp/12500/swiper.min.css" />
+  <!-- ============== 共用css ============== -->
+  <link rel="stylesheet" href="https://media.etmall.com.tw/sp/12500/animate.min.css" />
+  <link rel="stylesheet" href="https://media.etmall.com.tw/sp/12500/generate_v1.5.5.css" />
+  <link rel="stylesheet" href="https://media.etmall.com.tw/sp/12500/build.css" />
+
+  <!-- [電梯步驟1] 電梯CSS 不用就關掉 -->
+  <!-- 商品左電梯CSS，要使用還要在步驟2開啟左電梯data資料 -->
+  <!-- <link id="localElevatorLeft" rel="stylesheet" href="sp-elevator-left.css"> -->
+
+  <!-- 商品右電梯CSS，步驟2有測試div可以測試 -->
+  <link id="localElevatorRight" rel="stylesheet" href="sp-elevator-right.css" />
+  <!-- [電梯步驟1] 電梯CSS END -->
+
+  <style>
+    body {
+      background-color: #820817;
+    }
+
+    body:before {
+      background: url(bg-m.jpg) center 0 no-repeat;
+      background-size: 100%;
+    }
+
+    @media screen and (min-width: 960px) {
+      body:before {
+        background: url(bg.jpg) center 0 no-repeat;
+        background-size: auto;
+      }
+    }
+
+    /* 調整logo位置大小 */
+    /* .logo {
+        top: 1%;
+        left: 1%;
+        width: 30%;
+        max-width: 220px;
+      } */
+
+    /* --- 動畫小物件 --- */
+    .animate__wrap {
+      z-index: 1;
+    }
+
+    .sp__wallper {
+      overflow: hidden;
+    }
+
+    /*-- 手機版：設定物件距離左邊與上邊的位置，單位可以使用"%"或"vw";width:建議電腦版可以使用auto，手機版則可使用%調整 --*/
+    .animate__wrap .animate__obj--01 {
+      position: absolute;
+      z-index: -1;
+      top: 7vw;
+      left: 11vw;
+      width: 80%;
+      animation: slide-in-left 1s ease-out;
+    }
+
+    .animate__wrap .animate__obj--02 {
+      position: absolute;
+      z-index: -1;
+      top: 7vw;
+      left: 11vw;
+      width: 80%;
+      animation-name: slide-in-right;
+      animation-duration: 1s;
+      animation-timing-function: ease-out;
+      animation-delay: .8s;
+    }
+
+    /*-- 電腦版：設定物件距離左邊與上邊的位置，單位可以使用"px"，左邊可以挑整clac()後面的px值;width:建議電腦版可以使用auto，手機版則可使用%調整 --*/
+    @media screen and (min-width: 960px) {
+      .animate__wrap .animate__obj--01 {
+        top: 70px;
+        left: calc(50% - 385px);
+        width: auto;
+        animation: slide-in-left 1s ease-out;
+      }
+    }
+
+    @media screen and (min-width: 960px) {
+      .animate__wrap .animate__obj--02 {
+        top: 70px;
+        left: calc(50% - 385px);
+        width: auto;
+        animation-name: slide-in-right;
+        animation-duration: 1s;
+        animation-timing-function: ease-out;
+        animation-delay: .8s;
+      }
+    }
+
+    @keyframes slide-in-right {
+      0% {
+        transform: translateX(150px);
+        opacity: 0;
+      }
+
+      100% {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes slide-in-left {
+      0% {
+        transform: translateX(-150px);
+        opacity: 0;
+      }
+
+      100% {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    /* --- 動畫小物件 end --- */
+
+    /* == 單(雙)連結輪播_第二組 == */
+    .promo__slider--2 {
+      position: absolute;
+      z-index: 1;
+      top: 33.2%;
+      /* 小網左邊距離 */
+      left: 2.5%;
+      /* 小網圖片寬 */
+      width: 95%;
+      /* 圖片原始尺寸 */
+      overflow: hidden;
+      padding-bottom: 2%;
+    }
+
+    @media screen and (min-width: 960px) {
+      .promo__slider--2 {
+        /* 大網左邊距離 */
+        width: 910px;
+        top: 370px;
+        left: calc(50% - 450px);
+        overflow: visible;
+      }
+    }
+
+
+
+
+    /* --- 滑動Banner start --- */
+    .banner__slider {
+      /* 輪播的父層 */
+      z-index: 0;
+    }
+
+    .banner__slider .swipersty__banner {
+      position: absolute;
+      z-index: 0;
+      top: 31%;
+      left: 10.9%;
+      width: 78.1%;
+    }
+
+    /* --- 滑動Banner end --- */
+
+    /* --- 影片 start --- */
+    .video__wrap {
+      position: relative;
+      z-index: 0;
+    }
+
+    /*-- 手機版  --*/
+    .video__block {
+      position: absolute;
+      z-index: 1;
+      top: 30.5%;
+      left: 13.5%;
+      width: 73%;
+      height: 33vw;
+    }
+
+    .video__block iframe {
+      width: 100%;
+      height: 100%;
+    }
+
+    /*-- 電腦版 --*/
+    @media screen and (min-width: 960px) {
+      .video__block {
+        top: 163px;
+        left: calc(50% - 350px);
+        width: 700px;
+        height: 320px;
+      }
+    }
+
+    /* --- 影片 end --- */
+  </style>
+</head>
+<!-- 是否要固定背景，不要就拿掉class -->
+
+<body class="bg-fixed">
+  <div class="navRightBar" id="navRightBar"></div>
+  <div class="elevatorHome js--main--dialog" id="elevatorHome"></div>
+  <div id="barHome"></div>
+  <div class="home--icon layout--main" id="iconHome"></div>
+
+  <div class="sp__wallper" id="spWrap">
+
+
+    <div class="animate__wrap">
+      <img class="animate__animated animate__obj--01" src="ani_01.png" alt="" />
+      <img class="animate__animated animate__obj--02" src="ani_02.png" alt="" />
+    </div>
+
+    <main class="sp__main">
+      <div class="layout--main home--logo">
+        <a href="https://www.etmall.com.tw"><img class="logo" src="ehs-logo.png" alt="東森購物" /></a>
+      </div>
+
+      <section class="sp__visual">
+        <div class="layout--main">
+          <ul class="visual--auto clearfix">
+            <li class="visual__fragment width--auto">
+              <img src="index_01.png" alt="" />
+            </li>
+          </ul>
+
+          <!-- 單(雙)連結輪播_第二組 -->
+          <div class="promo__slider--2">
+            <div class="swiper-container" id="sliderMany2">
+              <ul class="swiper-wrapper">
+                <li class="swiper-slide">
+                  <div class="slide__block">
+                    <div class="slide__box">
+                      <a href="https://www.etmall.com.tw/i/7285191">
+                        <img src="1-1.png" alt="">
+                      </a>
+                    </div>
+                    <div class="slide__box">
+                      <a href="https://www.etmall.com.tw/i/7325814">
+                        <img src="1-2.png" alt="">
+                      </a>
+                    </div>
+                  </div>
+                </li>
+                <li class="swiper-slide">
+                  <div class="slide__block">
+                    <div class="slide__box">
+                      <a href="https://www.etmall.com.tw/i/7311561">
+                        <img src="2-1.png" alt="">
+                      </a>
+                    </div>
+                    <div class="slide__box">
+                      <a href="https://www.etmall.com.tw/i/7224000">
+                        <img src="2-2.png" alt="">
+                      </a>
+                    </div>
+                  </div>
+                </li>
+                <li class="swiper-slide">
+                  <div class="slide__block">
+                    <div class="slide__box">
+                      <a href="https://www.etmall.com.tw/i/7265400">
+                        <img src="3-1.png" alt="">
+                      </a>
+                    </div>
+                    <div class="slide__box">
+                      <a href="https://www.etmall.com.tw/i/3081022">
+                        <img src="3-2.png" alt="">
+                      </a>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- 單(雙)連結輪播_第二組 END -->
+
+        </div>
+      </section>
+    </main>
+
+    <section class="bn-w4m2">
+      <div class="layout--main">
+        <!-- <div class="banner__title" style="background-image: url(bar.png)"></div> -->
+        <ul class="banner__wrap clearfix">
+          <li class="banner__item">
+            <a href="#"><img src="menu_01.png" alt="banner" /></a>
+          </li>
+          <li class="banner__item">
+            <a href="#"><img src="menu_02.png" alt="banner" /></a>
+          </li>
+          <li class="banner__item">
+            <a href="#"><img src="menu_03.png" alt="banner" /></a>
+          </li>
+          <li class="banner__item">
+            <a href="#"><img src="menu_04.png" alt="banner" /></a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+
+    <section class="banner__slider">
+      <div class="layout--main">
+        <ul class="visual--auto clearfix">
+          <li class="visual__fragment width--auto">
+            <img src="index_06.png" alt="底圖" />
+          </li>
+        </ul>
+        <div class="swipersty__banner">
+          <div class="swiper-container" id="swiperstyBanner">
+            <ul class="swiper-wrapper">
+              <li class="swiper-slide">
+                <a href="#" title=""><img src="750x328_1.jpg" alt="" /></a>
+              </li>
+              <li class="swiper-slide">
+                <a href="#" title=""><img src="750x328_2.jpg" alt="" /></a>
+              </li>
+              <li class="swiper-slide">
+                <a href="#" title=""><img src="750x328_3.jpg" alt="" /></a>
+              </li>
+              <li class="swiper-slide">
+                <a href="#" title=""><img src="750x328_4.jpg" alt="" /></a>
+              </li>
+              <li class="swiper-slide">
+                <a href="#" title=""><img src="750x328_5.jpg" alt="" /></a>
+              </li>
+              <li class="swiper-slide">
+                <a href="#" title=""><img src="750x328_6.jpg" alt="" /></a>
+              </li>
+              <li class="swiper-slide">
+                <a href="#" title=""><img src="750x328_7.jpg" alt="" /></a>
+              </li>
+              <li class="swiper-slide">
+                <a href="#" title=""><img src="750x328_8.jpg" alt="" /></a>
+              </li>
+              <li class="swiper-slide">
+                <a href="#" title=""><img src="750x328_9.jpg" alt="" /></a>
+              </li>
+              <li class="swiper-slide">
+                <a href="#" title=""><img src="750x328_10.jpg" alt="" /></a>
+              </li>
+              <li class="swiper-slide">
+                <a href="#" title=""><img src="750x328_11.jpg" alt="" /></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== 影片 start ====== -->
+    <section class="video__wrap">
+      <div class="layout--main">
+        <ul class="visual--auto clearfix">
+          <li class="visual__fragment width--auto"><img src="index_07.png" alt="底圖"></li>
+        </ul>
+        <div class="video__block">
+          <iframe src="https://www.youtube.com/embed/BeAjroWRvSc" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+    </section>
+    <!-- ====== 影片 end ====== -->
+
+
+    <!-- ============== 共用JS ============== -->
+    <script src="https://media.etmall.com.tw/sp/12500/jquery-3.6.0.min.js"></script>
+    <script src="https://media.etmall.com.tw/sp/12500/swiper.min.js"></script>
+    <script src="https://media.etmall.com.tw/sp/12500/generate_v1.5.5.js"></script>
+    <!--[電梯步驟2] 電梯 JS -->
+    <!-- 商品左電梯單機版資料，不用就關掉，要使用還要上方步驟1開啟商品左電梯CSS -->
+    <!-- <script id="dataElevatorLeft" src="data-elevator.js"></script> -->
+
+    <!-- 線上自動切換電梯，無論如何都要有 -->
+    <script id="checkElevator" src="https://media.etmall.com.tw/sp/11911/check-elevator.js"></script>
+    <!-- [電梯步驟2] 電梯 JS END -->
+
+    <!-- [測試區] -->
+    <!-- 測試商品右電梯用，上線前必須關掉 -->
+    <!-- <div data-title="ccc"></div> -->
+    <!-- 測試霸道電梯用，開啟時上方自動切換電梯要關閉，這支正式上線時需關閉、上方的要開啟回來 -->
+    <!-- <script id="checkElevator" src="https://media.etmall.com.tw/sp/14841/test-elevator.js?87"></script> -->
+
+
+
+    <!-- ============== 輪播 start ============== -->
+    <script>
+
+      // 單(雙)連結輪播_第二組  
+      var sliderMany = new Swiper("#sliderMany2", {
+        autoplay: {
+          delay: 2500,
+          disableOnInteraction: false,
+        },
+        grabCursor: true,
+        loop: true,
+        speed: 1000,
+      });
+      // 單(雙)連結輪播_第二組 end    
+
+
+      var promoSliderItem = new Swiper("#swiperstyBanner", {
+        autoplay: {
+          delay: 2000,
+          disableOnInteraction: false,
+        },
+        grabCursor: true,
+        lazy: {
+          loadPrevNext: true,
+        },
+        loop: true,
+        perspective: true,
+        // effect: "flip",
+        // flipEffect: {
+        //   slideShadows: false,
+        // },
+        slidesPerView: 1,
+        speed: 600,
+        watchSlidesProgress: true,
+        watchSlidesVisibility: true,
+      });
+
+    </script>
+    <!-- ============== 輪播 end ============== -->
+</body>
+
+</html>
